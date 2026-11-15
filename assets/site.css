@@ -115,7 +115,7 @@ body {
   height: 2.5rem;
   flex: none;
   background: var(--bg);
-  border: 1px solid var(--line);
+  border: none;
   color: var(--link);
   cursor: pointer;
   border-radius: 6px;
