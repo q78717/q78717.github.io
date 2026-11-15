@@ -3,40 +3,181 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Redirecting to q-rv.github.io</title>
-  <link rel="canonical" href="https://q-rv.github.io/">
-  <meta name="robots" content="noindex">
-  <meta http-equiv="refresh" content="0; url=https://q-rv.github.io/">
-  <script>
-    // Keep the path, query and hash so deep links land on the same page.
-    location.replace("https://q-rv.github.io" + location.pathname + location.search + location.hash);
-  </script>
+  <title>rv — Typefaces</title>
+  <meta name="description" content="Open-source display typefaces by rv: Rondel and Fjellrune.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
+  <script src="assets/site.js"></script>
   <style>
-    :root { --darknavy: #0d1b2a; --offwhite: #f5f3ee; --denim: #3b5b8c; --red: #d72638;
-            --bg: var(--offwhite); --fg: var(--darknavy); }
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) { --bg: var(--darknavy); --fg: var(--offwhite); }
+    @font-face { font-family: "Rondel"; src: url("assets/fonts/Rondel-Regular.woff2") format("woff2"); font-display: swap; }
+    @font-face { font-family: "Rondel Ring"; src: url("assets/fonts/RondelRing-Regular.woff2") format("woff2"); font-display: swap; }
+    @font-face { font-family: "Rondel Coin"; src: url("assets/fonts/RondelCoin-Regular.woff2") format("woff2"); font-display: swap; }
+    @font-face { font-family: "Fjellrune"; src: url("assets/fonts/Fjellrune-Regular.woff2") format("woff2"); font-display: swap; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+    .hero { padding: 4rem 0 2.5rem; text-align: center; }
+    .banner {
+      font-family: "Dancing Script", cursive;
+      font-size: clamp(4rem, 16vw, 8rem);
+      font-weight: 700;
+      line-height: 1;
+      color: var(--fg);
     }
-    :root[data-theme="dark"] { --bg: var(--darknavy); --fg: var(--offwhite); }
-    * { box-sizing: border-box; }
-    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 16px;
-           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-           background: var(--bg); color: var(--fg); text-align: center; }
-    a { color: var(--denim); font-weight: 600; }
-    a:hover { color: var(--red); }
-    #theme { position: fixed; top: 16px; right: 16px; background: none; cursor: pointer;
-             border: 1px solid var(--denim); color: var(--fg); border-radius: 6px; padding: 6px 10px; font: inherit; }
+    .banner::after { content: "."; color: var(--red); }
+    .tagline {
+      margin-top: 1rem;
+      font-size: clamp(0.85rem, 2.6vw, 1rem);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    h2.section {
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin: 1rem 0 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    h2.section::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 1.5rem; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--red);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      min-width: 0;
+    }
+    .card h3 { font-size: 1.35rem; display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
+    .ver { font-size: 0.8rem; font-weight: 500; color: var(--muted); }
+    .card h3 .dot { color: var(--red); margin-left: -0.6rem; }
+    .sample { color: var(--sample); line-height: 1.15; overflow-wrap: anywhere; }
+    .sample .big { font-size: clamp(2.5rem, 9vw, 4rem); }
+    .sample .row { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .sample .mono { font-size: clamp(3rem, 10vw, 4.5rem); color: var(--red); }
+    .sample .styles { font-size: clamp(2rem, 7vw, 2.75rem); }
+    .rondel { font-family: "Rondel", sans-serif; }
+    .ring { font-family: "Rondel Ring", sans-serif; }
+    .coin { font-family: "Rondel Coin", sans-serif; }
+    .fjell { font-family: "Fjellrune", sans-serif; }
+    .card p { color: var(--muted); }
+    .facts { list-style: none; display: grid; gap: 0.35rem; font-size: 0.92rem; color: var(--muted); }
+    .facts li::before { content: "— "; color: var(--red); }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.88em; color: var(--fg); }
+    .links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: auto; padding-top: 0.5rem; }
+    .btn {
+      display: inline-block;
+      padding: 0.55rem 1rem;
+      border: 1px solid var(--fg);
+      color: var(--fg);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .btn.primary { background: var(--fg); border-color: var(--fg); color: var(--bg); }
+    .btn:hover { border-color: var(--red); color: var(--red); }
+    .btn.primary:hover { background: var(--red); border-color: var(--red); color: var(--offwhite); }
+    footer {
+      margin: 4rem 0 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--line);
+      font-size: 0.85rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.5rem;
+      justify-content: space-between;
+    }
+    footer a { color: var(--fg); text-underline-offset: 3px; }
+    footer a:hover { color: var(--red); }
   </style>
 </head>
 <body>
-  <button id="theme" type="button" aria-label="Toggle theme">◐</button>
-  <p>This site has moved to <a href="https://q-rv.github.io/">q-rv.github.io</a>.</p>
-  <script>
-    document.getElementById("theme").addEventListener("click", function () {
-      var r = document.documentElement;
-      var dark = r.dataset.theme ? r.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-      r.dataset.theme = dark ? "light" : "dark";
-    });
-  </script>
+  <header class="site-header">
+    <div class="inner">
+      <a class="site-logo" href="./" aria-label="rv — home">rv</a>
+      <nav class="site-nav" aria-label="Site">
+        <a href="rondel.html">Rondel</a>
+        <a href="fjellrune.html">Fjellrune</a>
+      </nav>
+      <span class="spacer"></span>
+      <button class="toggle" id="themeToggle" type="button" aria-label="Toggle light and dark mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-13a1 1 0 0 1-1-1V1a1 1 0 0 1 2 0v2a1 1 0 0 1-1 1zm0 19a1 1 0 0 1-1-1v-2a1 1 0 0 1 2 0v2a1 1 0 0 1-1 1zM4.93 6.34a1 1 0 0 1-.7-.29L2.81 4.63a1 1 0 0 1 1.42-1.42l1.41 1.42a1 1 0 0 1-.71 1.71zm14.14 14.14a1 1 0 0 1-.7-.29l-1.42-1.42a1 1 0 0 1 1.42-1.41l1.41 1.41a1 1 0 0 1-.71 1.71zM3 13H1a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2zm20 0h-2a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2zM3.52 20.48a1 1 0 0 1-.71-1.71l1.42-1.42a1 1 0 0 1 1.41 1.42l-1.41 1.41a1 1 0 0 1-.71.3zM17.66 6.34a1 1 0 0 1-.71-1.71l1.41-1.42a1 1 0 0 1 1.42 1.42l-1.42 1.42a1 1 0 0 1-.7.29z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <header class="hero">
+      <div class="banner">rv</div>
+      <p class="tagline">Open-source typefaces</p>
+    </header>
+
+    <main>
+      <h2 class="section">Typefaces</h2>
+      <div class="grid">
+
+        <article class="card" aria-labelledby="rondel-title">
+          <h3 id="rondel-title">Rondel<span class="dot">.</span> <span class="ver">v1.600 · 3 styles</span></h3>
+          <div class="sample" aria-hidden="true">
+            <div class="big rondel">Rondel</div>
+            <div class="row">
+              <span class="mono rondel">&lt;RV&gt;</span>
+              <span class="styles ring">Ring</span>
+              <span class="styles coin">Coin</span>
+            </div>
+          </div>
+          <p>A geometric display typeface in which every letter, figure and symbol is drawn inside one circle, using only circle arcs and straight lines. Strokes that reach the edge are trimmed by the circle, so their ends are curved cuts lying on it.</p>
+          <ul class="facts">
+            <li><strong>Rondel</strong> (proportional, kerned), <strong>Ring</strong> and <strong>Coin</strong> (monospaced)</li>
+            <li>Monograms: type <code>&lt;RV&gt;</code> for a single medallion</li>
+            <li>Google Fonts Latin Core; best at 32&nbsp;px and up</li>
+            <li>Submitted to Google Fonts</li>
+          </ul>
+          <div class="links">
+            <a class="btn primary" href="rondel.html">Specimen</a>
+            <a class="btn" href="https://github.com/q78717/font-rondel/releases/latest">Download</a>
+            <a class="btn" href="https://github.com/q78717/font-rondel">Source</a>
+          </div>
+        </article>
+
+        <article class="card" aria-labelledby="fjell-title">
+          <h3 id="fjell-title">Fjellrune<span class="dot">.</span> <span class="ver">v2.000</span></h3>
+          <div class="sample" aria-hidden="true">
+            <div class="big fjell">Fjellrune</div>
+            <div class="row">
+              <span class="mono fjell">&lt;RV&gt;</span>
+              <span class="styles fjell">ᚠᛁᛖᛚᛚ</span>
+            </div>
+          </div>
+          <p>An angular Nordic display typeface inspired by Elder Futhark geometry and carved runestone lettering. Every glyph is built from straight, blade-cut strokes, and every long stave carries a signature axe nick cut into its leading edge.</p>
+          <ul class="facts">
+            <li>Rune-shield medallions: type <code>&lt;RV&gt;</code> for an octagonal shield</li>
+            <li>Elder Futhark &amp; Nordic Runic block (<code>U+16A0–U+16F0</code>)</li>
+            <li>Google Fonts Latin Core; best at 28&nbsp;px and up</li>
+          </ul>
+          <div class="links">
+            <a class="btn primary" href="fjellrune.html">Specimen</a>
+            <a class="btn" href="https://github.com/q78717/font-fjellrune/releases/latest">Download</a>
+            <a class="btn" href="https://github.com/q78717/font-fjellrune">Source</a>
+          </div>
+        </article>
+
+      </div>
+    </main>
+
+    <footer>
+      <span>Fonts are free under the SIL Open Font License 1.1.</span>
+      <a href="coming-soon.html">Previous page</a>
+    </footer>
+  </div>
 </body>
 </html>

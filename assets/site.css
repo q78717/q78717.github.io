@@ -1,0 +1,150 @@
+/* Shared theme + fixed header for q78717.github.io pages. */
+:root {
+  --darknavy: #0d1b2a;
+  --offwhite: #f5f3ee;
+  --denim: #3b5b8c;
+  --red: #d72638;
+  --header-h: 56px;
+  /* Light */
+  --bg: var(--offwhite);
+  --fg: var(--darknavy);
+  --card: #ffffff;
+  --line: rgba(13, 27, 42, 0.14);
+  --muted: rgba(13, 27, 42, 0.68);
+  --link: var(--denim);
+  --sample: var(--fg);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: var(--darknavy);
+    --fg: var(--offwhite);
+    --card: #13263a;
+    --line: rgba(245, 243, 238, 0.14);
+    --muted: rgba(245, 243, 238, 0.70);
+    --link: #8fb0e0;
+    --sample: var(--fg);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: var(--darknavy);
+  --fg: var(--offwhite);
+  --card: #13263a;
+  --line: rgba(245, 243, 238, 0.14);
+  --muted: rgba(245, 243, 238, 0.70);
+  --link: #8fb0e0;
+  --sample: var(--fg);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-padding-top: calc(var(--header-h) + 16px); }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.55;
+  padding-top: var(--header-h);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ---------- fixed header ---------- */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: var(--header-h);
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  transition: background 0.3s ease;
+}
+.site-header .inner {
+  height: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.site-logo {
+  /* Badge: disc in the text colour, letters in the background colour. */
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--fg);
+  color: var(--bg);
+  font-family: "Dancing Script", cursive;
+  font-weight: 700;
+  font-size: 1.55rem;
+  line-height: 1;
+  text-decoration: none;
+  /* Centre the script ink (it sits low and left in its box) within the disc. */
+  padding: 0 0 6px 2.9px;
+}
+.site-logo::after { content: "."; color: var(--red); }
+.site-nav { display: flex; gap: 1.25rem; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.site-nav a {
+  color: var(--fg);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  padding: 0.25rem 0;
+  position: relative;
+}
+/* Underline drawn inside the padding so it doesn't push the text off-centre. */
+.site-nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: transparent; }
+.site-nav a:hover { color: var(--red); }
+.site-nav a[aria-current="page"]::after { background: var(--red); }
+.site-header .spacer { flex: 1; }
+.site-header .ext {
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-header .ext:hover { color: var(--red); }
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: none;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--link);
+  cursor: pointer;
+  border-radius: 6px;
+}
+.toggle:hover { color: var(--red); }
+.toggle svg { width: 1.4rem; height: 1.4rem; fill: currentColor; }
+/* Show the icon of the mode you would switch to. */
+.toggle .icon-sun { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .toggle .icon-sun { display: block; }
+  :root:not([data-theme="light"]) .toggle .icon-moon { display: none; }
+}
+:root[data-theme="dark"] .toggle .icon-sun { display: block; }
+:root[data-theme="dark"] .toggle .icon-moon { display: none; }
+
+a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+
+@media (max-width: 480px) {
+  .site-header .inner { gap: 1rem; }
+  .site-header .ext { display: none; }
+}
+
+/* ---------- embedded specimen pages ---------- */
+.frame-page { overflow: hidden; }
+.specimen-frame {
+  display: block;
+  width: 100%;
+  height: calc(100vh - var(--header-h));
+  height: calc(100dvh - var(--header-h));
+  border: 0;
+  background: var(--bg);
+}
